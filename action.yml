@@ -17,9 +17,14 @@ inputs:
     default: true
     required: false
 
-  category-map:
-    description: 'The category mapping. Can either be a "Key: Value" mapping or a path to a JSON config file.'
+  categories:
+    description: 'The category mapping.'
     required: true
+
+  label-search-pattern:
+    description: 'The category regex search pattern to use when searching for categories in the labels.'
+    default: 'category: ([a-zA-Z0-9]*).*'
+    required: false
 
   custom-text-input:
     description: 'This is the description for a custom input.'
