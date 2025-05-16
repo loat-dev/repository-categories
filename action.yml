@@ -1,0 +1,44 @@
+# https://docs.github.com/en/actions/sharing-automations/creating-actions/metadata-syntax-for-github-actions
+
+name: 'Template Action'
+description: 'Project Template for Deno GitHub Actions.'
+author: 'Author'
+branding:
+  icon: 'award'
+  color: 'green'
+
+inputs:
+  custom-text-input:
+    description: 'This is the description for a custom input.'
+    default: 'DefaultValue'
+    required: false
+
+  custom-list-input:
+    description: 'This is the description for a custom input.'
+    default: |
+      - Item1
+      - Item2
+      - Item3
+
+    required: false
+
+  custom-key-value-input:
+    description: 'This is the description for a custom input.'
+    default: |
+      key1: value1
+      key2: value2
+
+    required: false
+
+outputs:
+  custom-text-output:
+    description: 'This is the description for a custom output.'
+
+runs:
+  using: 'docker'
+  image: 'docker://denoland/deno:latest'
+  entrypoint: 'deno'
+  args:
+    - 'run'
+    - '-A'
+    - './src/index.ts'
