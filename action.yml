@@ -14,7 +14,7 @@ inputs:
 
   organization-name:
     description: 'The name of the organization.'
-    default: '${{ github.event.organization.login }}'
+    default: '${{ github.event.repository.owner.name }}'
     required: false
 
   only-public-repositories:
@@ -24,7 +24,7 @@ inputs:
 
   label-search-pattern:
     description: 'The category regex search pattern to use when searching for categories in the labels.'
-    default: 'category: ([a-zA-Z0-9]*).*'
+    default: 'category'
     required: false
 
   categories:
