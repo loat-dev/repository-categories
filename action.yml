@@ -14,7 +14,8 @@ inputs:
 
   organization-name:
     description: 'The name of the organization.'
-    required: true
+    default: '${{ github.event.organization.login }}'
+    required: false
 
   only-public-repositories:
     description: 'Query only public repositories. Private repositories will be ignored.'
