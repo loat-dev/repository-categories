@@ -10,20 +10,19 @@ const categories = actionsCore.getInput('categories');
 
 const octokit = actionsGithub.getOctokit(token)
 octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
-  response.data.forEach((repo) => {
-    if (onlyPublicRepositories && repo.private) {
+  response.data.forEach((repository) => {
+    if (onlyPublicRepositories && repository.private) {
       return;
     }
 
-    octokit.rest.issues.listLabelsForRepo({owner: organizationName, repo: repo.name}).then((labels) => {
+    octokit.rest.issues.listLabelsForRepo({owner: organizationName, repo: repository.name}).then((labels) => {
       const categoryLabel = labels.data.filter((label) => label.name.match(new RegExp(labelSearchPattern)))[0];
       
       if (!categoryLabel) {
         return;
       }
 
-      console.log(categoryLabel.description?.split(',').map((category) => category.trim()));
-      
+      console.log(repository.name, categoryLabel.description?.split(',').map((category) => category.trim()));
     })
   })
 })
