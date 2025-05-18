@@ -25,7 +25,7 @@ jobs:
         uses: './'
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
-          categories: 'categories.json'
+          categories-map: 'categories.json'
 
       - name: 'Test Action output'
         run: |

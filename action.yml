@@ -27,6 +27,10 @@ inputs:
     default: 'category'
     required: false
 
+  repository-blacklist:
+    description: 'A list of repositories to ignore.'
+    required: false
+
   categories-map:
     description: 'The category mapping. Can either be a YAML mapping or a path to a JSON file.'
     required: true
