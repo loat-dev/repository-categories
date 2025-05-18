@@ -24,6 +24,7 @@ jobs:
         id: test
         uses: './'
         with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
           organization-name: 'Mqxx'
           categories: 'categories.json'
 
