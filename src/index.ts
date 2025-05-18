@@ -39,9 +39,9 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
       const categoryLabel = labels.data.filter((label) => label.name.match(new RegExp(labelSearchPattern)))[0];
       
       if (!categoryLabel) {
-        actionsCore.warning(
+        actionsCore.info(
           `Ignoring repository "${repository.name}", because it has no category label that matches "${labelSearchPattern}".`,
-          {title: 'No category label found'}
+          
         );
         actionsCore.endGroup();
         return;
