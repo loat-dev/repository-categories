@@ -22,7 +22,7 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
         return;
       }
 
-      console.log(categoryLabel);
+      console.log(categoryLabel.description?.split(',').map((x) => x.trim()));
       
     })
   })
