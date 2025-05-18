@@ -13,44 +13,22 @@ inputs:
     required: true
 
   only-public-repositories:
-    description: 'Query only all public repositories. Private repositories will be ignored.'
-    default: true
+    description: 'Query only public repositories. Private repositories will be ignored.'
+    default: 'true'
     required: false
-
-  categories:
-    description: 'The category mapping.'
-    required: true
 
   label-search-pattern:
     description: 'The category regex search pattern to use when searching for categories in the labels.'
     default: 'category: ([a-zA-Z0-9]*).*'
     required: false
 
-  custom-text-input:
-    description: 'This is the description for a custom input.'
-    default: 'DefaultValue'
-    required: false
-
-  custom-list-input:
-    description: 'This is the description for a custom input.'
-    default: |
-      - Item1
-      - Item2
-      - Item3
-
-    required: false
-
-  custom-key-value-input:
-    description: 'This is the description for a custom input.'
-    default: |
-      key1: value1
-      key2: value2
-
-    required: false
+  categories:
+    description: 'The category mapping. Can either be a YAML mapping or a path to a JSON file.'
+    required: true
 
 outputs:
-  custom-text-output:
-    description: 'This is the description for a custom output.'
+  categories-changed:
+    description: 'If a category was added/changed/removed.'
 
 runs:
   using: 'docker'
