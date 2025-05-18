@@ -26,7 +26,10 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
     actionsCore.startGroup(`Repository ${repository.name}`);
 
     if (onlyPublicRepositories && repository.private) {
-      actionsCore.warning(`Ignoring repository "${repository.name}", because it is private and "only-public-repositories" is set to true.`);
+      actionsCore.warning(
+        `Ignoring repository "${repository.name}", because it is private and "only-public-repositories" is set to true.`,
+        {title: 'Private repository'}
+      );
       actionsCore.endGroup();
       return;
     }
@@ -36,7 +39,10 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
       const categoryLabel = labels.data.filter((label) => label.name.match(new RegExp(labelSearchPattern)))[0];
       
       if (!categoryLabel) {
-        actionsCore.warning(`Ignoring repository "${repository.name}", because it has no category label that matches "${labelSearchPattern}".`);
+        actionsCore.warning(
+          `Ignoring repository "${repository.name}", because it has no category label that matches "${labelSearchPattern}".`,
+          {title: 'No category label found'}
+        );
         actionsCore.endGroup();
         return;
       }
