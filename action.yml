@@ -10,9 +10,8 @@ branding:
 inputs:
   token:
     description: 'The GitHub token to use.'
-    default: '${{ secrets.GITHUB_TOKEN }}'
-    required: false
-    
+    required: true
+
   organization-name:
     description: 'The name of the organization.'
     required: true
