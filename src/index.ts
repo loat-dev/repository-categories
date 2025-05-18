@@ -9,7 +9,7 @@ const organizationName = actionsCore.getInput('organization-name');
 // const categories = actionsCore.getInput('categories');
 
 const octokit = actionsGithub.getOctokit(token)
-octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
+octokit.rest.repos.listForUser({username: organizationName}).then((response) => {
   console.log(response.data);
   
 })
