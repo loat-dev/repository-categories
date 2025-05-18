@@ -27,9 +27,13 @@ inputs:
     default: 'category'
     required: false
 
-  categories:
+  categories-map:
     description: 'The category mapping. Can either be a YAML mapping or a path to a JSON file.'
     required: true
+
+  categories-default:
+    description: 'The default category that will be used if no category is found. If a JSON file is provided to the `categories` input, this value will be ignored.'
+    required: false
 
 outputs:
   categories-changed:
