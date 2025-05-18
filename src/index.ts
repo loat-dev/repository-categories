@@ -18,6 +18,10 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
     octokit.rest.issues.listLabelsForRepo({owner: organizationName, repo: repo.name}).then((labels) => {
       const categoryLabel = labels.data.filter((label) => label.name.match(new RegExp(labelSearchPattern)))[0];
       
+      if (!categoryLabel) {
+        return;
+      }
+
       console.log(categoryLabel);
       
     })
