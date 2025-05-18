@@ -10,14 +10,16 @@ const repositoryBlacklist = yaml.parse(actionsCore.getInput('repository-blacklis
 const categoriesMap = actionsCore.getInput('categories-map');
 const categoriesDefault = actionsCore.getInput('categories-default');
 
-actionsCore.startGroup('Inputs');
-actionsCore.debug(`organization-name: ${organizationName}`)
-actionsCore.debug(`only-public-repositories: ${onlyPublicRepositories}`)
-actionsCore.debug(`label-search-pattern: ${labelSearchPattern}`)
-actionsCore.debug(`repository-blacklist: ${repositoryBlacklist}`)
-actionsCore.debug(`categories-map: ${categoriesMap}`)
-actionsCore.debug(`categories-default: ${categoriesDefault}`)
-actionsCore.endGroup();
+if (actionsCore.isDebug()) {
+  actionsCore.startGroup('Inputs');
+  actionsCore.debug(`organization-name: ${organizationName}`)
+  actionsCore.debug(`only-public-repositories: ${onlyPublicRepositories}`)
+  actionsCore.debug(`label-search-pattern: ${labelSearchPattern}`)
+  actionsCore.debug(`repository-blacklist: ${repositoryBlacklist}`)
+  actionsCore.debug(`categories-map: ${categoriesMap}`)
+  actionsCore.debug(`categories-default: ${categoriesDefault}`)
+  actionsCore.endGroup();
+}
 
 const octokit = actionsGithub.getOctokit(token)
 octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
