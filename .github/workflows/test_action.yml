@@ -25,7 +25,7 @@ jobs:
         uses: './'
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
-          organization-name: '${{ github.event.repository.owner.name }}'
+          # organization-name: '${{ github.event.repository.owner.name }}'
           categories: 'categories.json'
 
       - name: 'Test Action output'
