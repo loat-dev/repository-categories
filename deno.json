@@ -48,6 +48,7 @@
   },
   "imports": {
     "@actions/core": "npm:@actions/core",
+    "@actions/github": "npm:@actions/github",
     "@std/yaml": "jsr:@std/yaml"
   }
 }

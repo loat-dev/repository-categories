@@ -1,12 +1,29 @@
 import actionsCore from '@actions/core';
-import * as yaml from '@std/yaml'
+import actionsGithub from '@actions/github';
+// import * as yaml from '@std/yaml'
 
-const customTextInput = actionsCore.getInput('custom-text-input');
-const customListInput = yaml.parse(actionsCore.getInput('custom-list-input'));
-const customKeyValueInput = yaml.parse(actionsCore.getInput('custom-key-value-input'));
+const token = actionsCore.getInput('token');
+const organizationName = actionsCore.getInput('organization-name');
+const onlyPublicRepositories = actionsCore.getBooleanInput('only-public-repositories');
+const labelSearchPattern = actionsCore.getInput('label-search-pattern');
+const categories = actionsCore.getInput('categories');
 
-console.log('custom-text-input:', customTextInput);
-console.log('custom-list-input:', customListInput);
-console.log('custom-key-value-input:', customKeyValueInput);
-
-actionsCore.setOutput('custom-text-output', 'Test123');
+const octokit = actionsGithub.getOctokit(token)
+octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
+  const repositories = response.data.filter((repository) => {
+    return onlyPublicRepositories ? repository.visibility === 'public' : true
+  })
+  const labels = repositories.map((repository) => {
+    return octokit.rest.issues.listLabelsForRepo({owner: organizationName, repo: repository.name}).then((response) => {
+      const labels = response.data.filter((label) => {
+        return label.name.match(new RegExp(labelSearchPattern))
+      })
+      return labels
+    })
+  })
+  console.log(labels);
+  
+  Promise.all(labels).then((labels) => {
+    actionsCore.setOutput('labels', JSON.stringify(labels))
+  })
+})
