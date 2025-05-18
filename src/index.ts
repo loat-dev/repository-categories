@@ -27,6 +27,7 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
 
     if (onlyPublicRepositories && repository.private) {
       actionsCore.warning(`Ignoring repository "${repository.name}", because it is private and "only-public-repositories" is set to true.`);
+      actionsCore.endGroup();
       return;
     }
     
@@ -36,6 +37,7 @@ octokit.rest.repos.listForOrg({org: organizationName}).then((response) => {
       
       if (!categoryLabel) {
         actionsCore.warning(`Ignoring repository "${repository.name}", because it has no category label that matches "${labelSearchPattern}".`);
+        actionsCore.endGroup();
         return;
       }
       const name = repository.name;
