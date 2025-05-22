@@ -23,7 +23,7 @@
     },
     "categories": {
       "type": "object",
-      "description": "Categories to use for the repository categories GitHub action config.json file.",
+      "description": "Categories",
       "properties": {
         "id": {
           "type": "object",
@@ -31,7 +31,7 @@
         },
         "default": {
           "type": "string",
-          "description": "Default category to use if no other category is found."
+          "description": "Default category to use if no category is found."
         }
       },
       "required": [ "id", "default" ]
