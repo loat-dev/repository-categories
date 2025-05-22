@@ -3,10 +3,26 @@
   "title": "Category Config",
   "description": "Configuration for the repository categories GitHub action config.json file.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "templateFiles": {
       "type": "object",
-      "description": "Template files to use for the categories."
+      "description": "Template files to use for the categories.",
+      "additionalProperties": false,
+      "properties": {
+        "readme": {
+          "type": "string",
+          "description": "Template file for the README."
+        },
+        "category": {
+          "type": "string",
+          "description": "Template file for the category."
+        },
+        "repository": {
+          "type": "string",
+          "description": "Template file for the repository."
+        }
+      }
     },
     "labelSearchPattern": {
       "type": "string",
@@ -24,10 +40,17 @@
     "categories": {
       "type": "object",
       "description": "Categories",
+      "additionalProperties": false,
       "properties": {
         "id": {
           "type": "object",
-          "description": "ID if the category."
+          "description": "ID if the category.",
+          "patternProperties": {
+            "^[a-zA-Z0-9]+$": {
+              "type": "string",
+              "description": "Category properties."
+            }
+          }
         },
         "default": {
           "type": "string",
