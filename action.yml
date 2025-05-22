@@ -14,29 +14,33 @@ inputs:
 
   organization-name:
     description: 'The name of the organization.'
-    default: '${{ github.event.repository.owner.name }}'
     required: false
+    default: '${{ github.event.repository.owner.name }}'
 
   only-public-repositories:
     description: 'Query only public repositories. Private repositories will be ignored.'
-    default: 'true'
     required: false
+    default: 'true'
 
   label-search-pattern:
-    description: 'The category regex search pattern to use when searching for categories in the labels.'
-    default: 'category'
+    description: |
+      The category regex search pattern to use when searching for category labels in the repositories.
+      Specify the categories as comma separated values in the label description.
     required: false
+    default: 'category'
 
   repository-blacklist:
     description: 'A list of repositories to ignore.'
     required: false
 
-  categories-map:
+  categories:
     description: 'The category mapping. Can either be a YAML mapping or a path to a JSON file.'
     required: true
 
   categories-default:
-    description: 'The default category that will be used if no category is found. If a JSON file is provided to the `categories` input, this value will be ignored.'
+    description: |
+      This category will be used if no category for a repository is found.
+      If a JSON file is provided to the `categories` input, this value will be ignored.'
     required: false
 
 outputs:

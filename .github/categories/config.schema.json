@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Category Config",
+  "description": "Configuration for the repository categories GitHub action config.json file.",
+  "type": "object",
+  "properties": {
+    "templateFiles": {
+      "type": "object",
+      "description": "Template files to use for the categories."
+    },
+    "labelSearchPattern": {
+      "type": "string",
+      "description": "The pattern to search for in the repository labels."
+    },
+    "repositoryBlacklist": {
+      "type": "array",
+      "description": "List of repository names to blacklist.",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "description": "Repository name to blacklist."
+      }
+    },
+    "categories": {
+      "type": "object",
+      "description": "Categories to use for the repository categories GitHub action config.json file.",
+      "properties": {
+        "id": {
+          "type": "object",
+          "description": "ID if the category."
+        },
+        "default": {
+          "type": "string",
+          "description": "Default category to use if no other category is found."
+        }
+      },
+      "required": [ "id", "default" ]
+    }
+  },
+  "required": [
+    "templateFiles",
+    "categories"
+  ]
+}
