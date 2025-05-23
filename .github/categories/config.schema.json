@@ -4,35 +4,56 @@
   "description": "Configuration for the repository categories GitHub action config.json file.",
   "type": "object",
   "additionalProperties": false,
+  "required": [
+    "templateFiles",
+    "categories"
+  ],
   "properties": {
     "$schema": {
-      "type": "string",
       "title": "Schema",
-      "description": "Pointer to the schema against which this document should be validated."
+      "description": "Path to the schema against which this document should be validated.",
+      "type": "string"
+    },
+    "onlyPublicRepositories": {
+      "title": "Only Public Repositories",
+      "description": "Query only public repositories. Private repositories will be ignored.",
+      "type": "boolean",
+      "default": true
     },
     "templateFiles": {
       "title": "Template Files",
       "description": "Template files to use for the categories.",
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "readme",
+        "category",
+        "repository"
+      ],
       "properties": {
         "readme": {
+          "title": "README",
           "description": "Template file for the readme.",
-          "type": "string"
+          "type": "string",
+          "default": "./.github/categories/templates/readme.md"
         },
         "category": {
+          "title": "Category",
           "description": "Template file for the category.",
-          "type": "string"
+          "type": "string",
+          "default": "./.github/categories/templates/category.md"
         },
         "repository": {
+          "title": "Repository",
           "description": "Template file for the repository.",
-          "type": "string"
+          "type": "string",
+          "default": "./.github/categories/templates/repository.md"
         }
       }
     },
     "labelSearchPattern": {
       "title": "Label Search Pattern",
-      "description": "The pattern to search for in the repository labels.",
+      "description": "The category regex search pattern to use when searching for category labels in the repositories. Specify the categories as comma separated values in the label description.",
       "type": "string"
     },
     "repositoryBlacklist": {
@@ -40,49 +61,36 @@
       "description": "List of repository names to blacklist.",
       "type": "array",
       "uniqueItems": true,
+      "default": [
+        ".github"
+      ],
       "items": {
         "type": "string",
-        "description": "Repository name to blacklist."
+        "description": "Repository name to blacklist.",
+        "pattern": "^[a-zA-Z0-9-_.]+$"
       }
     },
     "categories": {
       "title": "Categories",
+      "description": "Mappings between the category IDs and the category names.",
       "type": "object",
-      "additionalProperties": false,
+      "default": {
+        "": "No Category"
+      },
+      "required": [ "" ],
       "properties": {
-        "id": {
-          "title": "ID",
-          "description": "Mappings between the category IDs and the category names.",
-          "type": "object",
-          "properties": {
-            "category_1": {
-              "$comment": "This is an example category.",
-              "title": "Category Name",
-              "description": "The display name of the category, used in the README.",
-              "type": "string",
-              "default": "Category 1"
-            }
-          },
-          "patternProperties": {
-            "": {
-              "title": "Category Name",
-              "description": "The display name of the category, used in the README.",
-              "examples": [ "Category 1" ],
-              "type": "string"
-            }
-          }
-        },
-        "default": {
+        "": {
+          "description": "Default category to use if no category is found.",
           "type": "string",
-          "title": "Default",
-          "description": "Default category to use if no category is found."
+          "default": "No Category"
         }
       },
-      "required": [ "id", "default" ]
+      "patternProperties": {
+        "": {
+          "description": "Mapping from the category ID to the category name.",
+          "type": "string"
+        }
+      }
     }
-  },
-  "required": [
-    "templateFiles",
-    "categories"
-  ]
+  }
 }

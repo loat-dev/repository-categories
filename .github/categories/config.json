@@ -1,17 +1,17 @@
 {
   "$schema": "./config.schema.json",
+  "onlyPublicRepositories": true,
   "templateFiles": {
-    "readme": "readme.md",
-    "category": "category.md",
-    "repository": "repository.md"
+    "readme": "./templates/readme.md",
+    "category": "./templates/category.md",
+    "repository": "./templates/repository.md"
   },
   "labelSearchPattern": "category",
-  "repositoryBlacklist": [],
+  "repositoryBlacklist": [
+    ".github"
+  ],
   "categories": {
-    "id": {
-      "category1": "Category 1",
-      "category2": "Category 2"
-    },
-    "default": "Category Default"
+    "": "No Category",
+    "exampleCategory": "Example Category"
   }
 }

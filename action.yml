@@ -13,7 +13,7 @@ inputs:
     required: true
 
   organization-name:
-    description: 'The name of the organization.'
+    description: 'The name of the organization in which to search the repositories for the categories.'
     required: false
     default: '${{ github.event.repository.owner.name }}'
 
@@ -21,6 +21,14 @@ inputs:
     description: 'Query only public repositories. Private repositories will be ignored.'
     required: false
     default: 'true'
+
+  template-files:
+    description: 'Template files to use for the categories.'
+    required: false
+    default: |
+      readme: './.github/categories/templates/readme.md'
+      category: './.github/categories/templates/category.md'
+      repository: './.github/categories/templates/repository.md'
 
   label-search-pattern:
     description: |
@@ -30,18 +38,21 @@ inputs:
     default: 'category'
 
   repository-blacklist:
-    description: 'A list of repositories to ignore.'
+    description: 'List of repository names to blacklist.'
     required: false
 
   categories:
-    description: 'The category mapping. Can either be a YAML mapping or a path to a JSON file.'
-    required: true
-
-  categories-default:
     description: |
-      This category will be used if no category for a repository is found.
-      If a JSON file is provided to the `categories` input, this value will be ignored.'
-    required: false
+      The category mapping. Can either be a YAML mapping or a path to a JSON file.
+      Use an empty key for the default category.
+
+      Example:
+        "": "No Category"
+        "category_1": "Category 1"
+
+    required: true
+    default: |
+      "": "No Category"
 
 outputs:
   categories-changed:
