@@ -1,36 +1,44 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "title": "Category Config",
   "description": "Configuration for the repository categories GitHub action config.json file.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "$schema": {
+      "type": "string",
+      "title": "Schema",
+      "description": "Pointer to the schema against which this document should be validated."
+    },
     "templateFiles": {
-      "type": "object",
+      "title": "Template Files",
       "description": "Template files to use for the categories.",
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "readme": {
-          "type": "string",
-          "description": "Template file for the README."
+          "description": "Template file for the readme.",
+          "type": "string"
         },
         "category": {
-          "type": "string",
-          "description": "Template file for the category."
+          "description": "Template file for the category.",
+          "type": "string"
         },
         "repository": {
-          "type": "string",
-          "description": "Template file for the repository."
+          "description": "Template file for the repository.",
+          "type": "string"
         }
       }
     },
     "labelSearchPattern": {
-      "type": "string",
-      "description": "The pattern to search for in the repository labels."
+      "title": "Label Search Pattern",
+      "description": "The pattern to search for in the repository labels.",
+      "type": "string"
     },
     "repositoryBlacklist": {
-      "type": "array",
+      "title": "Repository Blacklist",
       "description": "List of repository names to blacklist.",
+      "type": "array",
       "uniqueItems": true,
       "items": {
         "type": "string",
@@ -38,22 +46,35 @@
       }
     },
     "categories": {
+      "title": "Categories",
       "type": "object",
-      "description": "Categories",
       "additionalProperties": false,
       "properties": {
         "id": {
+          "title": "ID",
+          "description": "Mappings between the category IDs and the category names.",
           "type": "object",
-          "description": "ID if the category.",
-          "patternProperties": {
-            "^[a-zA-Z0-9]+$": {
+          "properties": {
+            "category_1": {
+              "$comment": "This is an example category.",
+              "title": "Category Name",
+              "description": "The display name of the category, used in the README.",
               "type": "string",
-              "description": "Category properties."
+              "default": "Category 1"
+            }
+          },
+          "patternProperties": {
+            "": {
+              "title": "Category Name",
+              "description": "The display name of the category, used in the README.",
+              "examples": [ "Category 1" ],
+              "type": "string"
             }
           }
         },
         "default": {
           "type": "string",
+          "title": "Default",
           "description": "Default category to use if no category is found."
         }
       },
