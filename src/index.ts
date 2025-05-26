@@ -2,7 +2,7 @@ import actionsCore from '@actions/core';
 import actionsGithub from '@actions/github';
 import * as yaml from '@std/yaml'
 
-const token = actionsCore.getInput('token');
+const token = actionsCore.getInput('token', { required: true });
 const organizationName = actionsCore.getInput('organization-name');
 const onlyPublicRepositories = actionsCore.getBooleanInput('only-public-repositories');
 const labelSearchPattern = actionsCore.getInput('label-search-pattern');
