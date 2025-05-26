@@ -2,22 +2,29 @@ import actionsCore from '@actions/core';
 import actionsGithub from '@actions/github';
 import * as yaml from '@std/yaml'
 
-const token = actionsCore.getInput('token', { required: true });
-const organizationName = actionsCore.getInput('organization-name');
-const onlyPublicRepositories = actionsCore.getBooleanInput('only-public-repositories');
-const labelSearchPattern = actionsCore.getInput('label-search-pattern');
-const repositoryBlacklist = yaml.parse(actionsCore.getInput('repository-blacklist')) as string[];
-const categoriesMap = actionsCore.getInput('categories-map');
-const categoriesDefault = actionsCore.getInput('categories-default');
+import * as action from './action/index.ts';
+
+const {
+  token,
+  configFile,
+  organizationName,
+  onlyPublicRepositories,
+  templateFiles,
+  labelSearchPattern,
+  repositoryBlacklist,
+  categories
+} = action.getValuesFromInputs(action.inputs);
+
 
 if (actionsCore.isDebug()) {
   actionsCore.debug('Inputs:');
+  actionsCore.debug(`config-file: ${configFile}`)
   actionsCore.debug(`organization-name: ${organizationName}`)
   actionsCore.debug(`only-public-repositories: ${onlyPublicRepositories}`)
+  actionsCore.debug(`template-files: ${JSON.stringify(templateFiles)}`)
   actionsCore.debug(`label-search-pattern: ${labelSearchPattern}`)
   actionsCore.debug(`repository-blacklist: ${repositoryBlacklist}`)
-  actionsCore.debug(`categories-map: ${categoriesMap}`)
-  actionsCore.debug(`categories-default: ${categoriesDefault}`)
+  actionsCore.debug(`categories: ${JSON.stringify(categories)}`)
 }
 
 const octokit = actionsGithub.getOctokit(token)
