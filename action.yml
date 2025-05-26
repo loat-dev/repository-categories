@@ -1,10 +1,10 @@
 # https://docs.github.com/en/actions/sharing-automations/creating-actions/metadata-syntax-for-github-actions
 
-name: 'Template Action'
-description: 'Project Template for Deno GitHub Actions.'
-author: 'Author'
+name: 'Repository Categories'
+description: 'This action creates a list of categories from the repositories in a GitHub organization.'
+author: 'Mqxx'
 branding:
-  icon: 'award'
+  icon: 'grid'
   color: 'green'
 
 inputs:
@@ -12,18 +12,31 @@ inputs:
     description: 'The GitHub token to use.'
     required: true
 
+  config-file:
+    description: 'The configuration file to use.'
+    required: false
+
   organization-name:
-    description: 'The name of the organization in which to search the repositories for the categories.'
+    description: |
+      If already specified in the configuration file, this will be omitted.
+
+      The name of the organization in which to search the repositories for the categories.
     required: false
     default: '${{ github.event.repository.owner.name }}'
 
   only-public-repositories:
-    description: 'Query only public repositories. Private repositories will be ignored.'
+    description: |
+      If already specified in the configuration file, this will be omitted.
+
+      Query only public repositories. Private repositories will be ignored.
     required: false
     default: 'true'
 
   template-files:
-    description: 'Template files to use for the categories.'
+    description: |
+      If already specified in the configuration file, this will be omitted.
+
+      Template files to use for the categories.
     required: false
     default: |
       readme: './.github/categories/templates/readme.md'
@@ -32,29 +45,38 @@ inputs:
 
   label-search-pattern:
     description: |
+      If already specified in the configuration file, this will be omitted.
+
       The category regex search pattern to use when searching for category labels in the repositories.
       Specify the categories as comma separated values in the label description.
     required: false
     default: 'category'
 
   repository-blacklist:
-    description: 'List of repository names to blacklist.'
+    description: |
+      If already specified in the configuration file, this will be omitted.
+
+      List of repository names to blacklist.
     required: false
 
   categories:
     description: |
+      If already specified in the configuration file, this will be omitted.
+
       The category mapping. Can either be a YAML mapping or a path to a JSON file.
       Use an empty key for the default category.
 
       Example:
         "": "No Category"
         "category_1": "Category 1"
-
-    required: true
+    required: false
     default: |
       "": "No Category"
 
 outputs:
+  generated-readme-text:
+    description: 'The generated README file with the categories.'
+
   categories-changed:
     description: 'If a category was added/changed/removed.'
 
