@@ -15,6 +15,12 @@ const {
   categories
 } = action.getValuesFromInputs(action.inputs);
 
+const config : action.config.Config = {
+  ...action.config.getConfigFileContents(configFile),
+  onlyPublicRepositories
+}
+
+
 
 if (actionsCore.isDebug()) {
   actionsCore.debug('Inputs:');
