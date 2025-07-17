@@ -63,8 +63,7 @@ inputs:
     description: |
       If already specified in the configuration file, this will be omitted.
 
-      The category mapping. Can either be a YAML mapping or a path to a JSON file.
-      Use an empty key for the default category.
+      The category mapping. Use an empty key for the default category.
 
       Example:
         "": "No Category"
