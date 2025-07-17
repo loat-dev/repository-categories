@@ -2,7 +2,7 @@ import actionsCore from '@actions/core';
 import type { Config } from './index.ts';
 import { categories, labelSearchPattern, onlyPublicRepositories, repositoryBlacklist, templateFiles } from '../inputs/index.ts';
 
-export function getConfigFileContents(configFilePath: string | undefined) : Config {
+export function getConfigFileContents(configFilePath: string) : Config {
   let config : Config = {
     onlyPublicRepositories: onlyPublicRepositories(),
     templateFiles: templateFiles(),

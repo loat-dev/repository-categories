@@ -5,6 +5,6 @@ import { getString } from '../get_string.ts';
  * 
  * @returns The value of the `config-file` input.
  */
-export function configFile() : string | undefined {
+export function configFile() : string {
   return getString('config-file');
 }

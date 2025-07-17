@@ -5,6 +5,6 @@ import { getString } from '../get_string.ts';
  * 
  * @returns The value of the `organization-name` input.
  */
-export function organizationName() : string | undefined {
+export function organizationName() : string {
   return getString('organization-name');
 }
