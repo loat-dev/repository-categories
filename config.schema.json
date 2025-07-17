@@ -15,7 +15,7 @@
     },
     "onlyPublicRepositories": {
       "title": "Only Public Repositories",
-      "description": "Query only public repositories. Private repositories will be ignored.",
+      "description": "Query only public repositories. Private repositories will be ignored.\nDefault: true",
       "type": "boolean",
       "default": true
     },
@@ -27,19 +27,19 @@
       "properties": {
         "readme": {
           "title": "README",
-          "description": "Template file for the readme.\nDefault: './.github/categories/templates/readme.md'.",
+          "description": "Template file for the readme.\nDefault: './.github/categories/templates/readme.md'",
           "type": "string",
           "default": "./.github/categories/templates/readme.md"
         },
         "category": {
           "title": "Category",
-          "description": "Template file for the category.\nDefault: './.github/categories/templates/category.md'.",
+          "description": "Template file for the category.\nDefault: './.github/categories/templates/category.md'",
           "type": "string",
           "default": "./.github/categories/templates/category.md"
         },
         "repository": {
           "title": "Repository",
-          "description": "Template file for the repository.\nDefault: './.github/categories/templates/repository.md'.",
+          "description": "Template file for the repository.\nDefault: './.github/categories/templates/repository.md'",
           "type": "string",
           "default": "./.github/categories/templates/repository.md"
         }
@@ -47,8 +47,9 @@
     },
     "labelSearchPattern": {
       "title": "Label Search Pattern",
-      "description": "The category regex search pattern to use when searching for category labels in the repositories. Specify the categories as comma separated values in the label description.",
-      "type": "string"
+      "description": "The category regex search pattern to use when searching for category labels in the repositories. Specify the categories as comma separated values in the label description.\nDefault: '/category/g'",
+      "type": "string",
+      "default": "/category/g"
     },
     "repositoryBlacklist": {
       "title": "Repository Blacklist",

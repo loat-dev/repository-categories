@@ -50,7 +50,7 @@ inputs:
       The category regex search pattern to use when searching for category labels in the repositories.
       Specify the categories as comma separated values in the label description.
     required: false
-    default: 'category'
+    default: '/category/g'
 
   repository-blacklist:
     description: |

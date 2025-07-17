@@ -6,7 +6,7 @@
     "category": "./templates/category.md",
     "repository": "./templates/repository.md"
   },
-  "labelSearchPattern": "category",
+  "labelSearchPattern": "/category/g",
   "repositoryBlacklist": [
     ".github"
   ],
