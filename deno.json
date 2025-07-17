@@ -1,6 +1,7 @@
 {
   "license": "./LICENSE",
   "tasks": {
+    "index": "deno run -A ./src/index.ts"
     "lint": "deno lint",
     "test": "deno test -A --unstable --check --reload --doc --allow-none --junit-path=\"./report.xml\""
   },
