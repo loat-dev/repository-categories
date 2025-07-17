@@ -28,9 +28,8 @@ export function templateFiles() : TemplateFiles {
   const valueParsed = yaml.parse(value) as TemplateFiles
 
   return {
-    ...defaultTemplates,
-    readme: valueParsed.readme,
-    category: valueParsed.category,
-    repository: valueParsed.repository
+    readme: valueParsed.readme ?? defaultTemplates.readme,
+    category: valueParsed.category ?? defaultTemplates.category,
+    repository: valueParsed.repository ?? defaultTemplates.repository
   };
 }
