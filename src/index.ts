@@ -23,7 +23,7 @@ if (actionsCore.isDebug()) {
   actionsCore.debug(`only-public-repositories: ${onlyPublicRepositories}`)
   actionsCore.debug(`template-files: ${JSON.stringify(templateFiles)}`)
   actionsCore.debug(`label-search-pattern: ${labelSearchPattern}`)
-  actionsCore.debug(`repository-blacklist: ${repositoryBlacklist}`)
+  actionsCore.debug(`repository-blacklist: ${JSON.stringify(repositoryBlacklist)}`)
   actionsCore.debug(`categories: ${JSON.stringify(categories)}`)
 }
 
