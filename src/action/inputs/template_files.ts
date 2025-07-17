@@ -2,15 +2,9 @@ import { getStringElseUndefined } from '../get_string_else_undefined.ts';
 import * as yaml from '@std/yaml';
 
 interface TemplateFiles {
-  readme : string,
-  category : string,
-  repository : string
-}
-
-const defaultTemplates : TemplateFiles = {
-  readme: './.github/categories/templates/readme.md',
-  category: './.github/categories/templates/category.md',
-  repository: './.github/categories/templates/repository.md'
+  readme : string | undefined,
+  category : string | undefined,
+  repository : string | undefined
 }
 
 /**
@@ -22,14 +16,18 @@ export function templateFiles() : TemplateFiles {
   const value = getStringElseUndefined('template-files');
 
   if (value === undefined) {
-    return defaultTemplates;
+    return {
+      readme: undefined,
+      category: undefined,
+      repository: undefined
+    };
   }
   
   const valueParsed = yaml.parse(value) as TemplateFiles
 
   return {
-    readme: valueParsed.readme ?? defaultTemplates.readme,
-    category: valueParsed.category ?? defaultTemplates.category,
-    repository: valueParsed.repository ?? defaultTemplates.repository
+    readme: valueParsed.readme,
+    category: valueParsed.category,
+    repository: valueParsed.repository
   };
 }
