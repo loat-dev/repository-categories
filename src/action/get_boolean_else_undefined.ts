@@ -9,7 +9,7 @@ export function getBooleanElseUndefined(
   key : string,
   getInput : (name : string) => string = actionsCore.getInput
 ) : boolean | undefined {
-  const trueValue = ['true', 'True', 'TRUE'];
+  const trueValue = ['true', 'True', 'TRUE', 'yes', 'Yes', 'YES'];
 
   const keyValue = getInput(key);
 
