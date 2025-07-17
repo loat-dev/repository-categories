@@ -84,6 +84,5 @@ runs:
   image: 'docker://denoland/deno:latest'
   entrypoint: 'deno'
   args:
-    - 'run'
-    - '-A'
-    - './src/index.ts'
+    - 'task'
+    - 'index'
