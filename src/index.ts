@@ -18,7 +18,7 @@ const {
 
 if (actionsCore.isDebug()) {
   actionsCore.debug('Inputs:');
-  actionsCore.debug(`config-file: ${configFile}`)
+  actionsCore.debug(`config-file: ${Deno.readTextFileSync(configFile)}`)
   actionsCore.debug(`organization-name: ${organizationName}`)
   actionsCore.debug(`only-public-repositories: ${onlyPublicRepositories}`)
   actionsCore.debug(`template-files: ${JSON.stringify(templateFiles)}`)
