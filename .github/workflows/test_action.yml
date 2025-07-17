@@ -29,5 +29,5 @@ jobs:
 
       - name: 'Test Action output'
         run: |
-          echo "Output: ${{ steps.test.outputs.custom-text-output }}"
+          echo "Output: ${{ steps.test.outputs.generated-readme-text }}"
 
