@@ -1,5 +1,5 @@
 {
-  "$schema": "./config.schema.json",
+  "$schema": "../../config.schema.json",
   "onlyPublicRepositories": true,
   "templateFiles": {
     "readme": "./templates/readme.md",
@@ -12,6 +12,8 @@
   ],
   "categories": {
     "": "No Category",
-    "exampleCategory": "Example Category"
+    "foo": "Foo Category",
+    "bar": "Bar Category",
+    "bazz": "Bazz Category"
   }
 }
