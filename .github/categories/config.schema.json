@@ -25,11 +25,6 @@
       "description": "Template files to use for the categories.",
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "readme",
-        "category",
-        "repository"
-      ],
       "properties": {
         "readme": {
           "title": "README",
