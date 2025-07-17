@@ -1,5 +1,7 @@
+import actionsCore from '@actions/core';
 import { getString } from '../get_string.ts';
 import * as yaml from '@std/yaml';
+import { defaults } from '../config/index.ts';
 
 /**
  * Get the value of the `repository-blacklist` input from the action.
@@ -9,9 +11,21 @@ import * as yaml from '@std/yaml';
 export function repositoryBlacklist() : string[] {
   const value = getString('repository-blacklist');
 
-  if (value === undefined) {
-    return []
+  try {
+    return {
+      ...defaults.repositoryBlacklist,
+      ...yaml.parse(value) as string[]
+    }
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      actionsCore.error(
+        `Parsing error:\n${error.stack}`,
+        {title: 'Invalid YAML'}
+      )
+    }
+
+    actionsCore.error(error as Error)
+
+    return defaults.repositoryBlacklist;
   }
-  
-  return yaml.parse(value) as string[]
 }
