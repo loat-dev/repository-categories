@@ -1,6 +1,6 @@
 
 export * as inputs from './inputs/index.ts';
 export { getValuesFromInputs } from './get_values_from_inputs.ts';
-export { getBooleanElseUndefined } from './get_boolean_else_undefined.ts';
-export { getStringElseUndefined } from './get_string_else_undefined.ts';
+export { getBoolean } from './get_boolean.ts';
+export { getString } from './get_string.ts';
 export * as config from './config/index.ts';

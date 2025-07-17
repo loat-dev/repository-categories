@@ -1,8 +1,15 @@
 import actionsCore from '@actions/core';
 import type { Config } from './index.ts';
+import { categories, labelSearchPattern, onlyPublicRepositories, repositoryBlacklist, templateFiles } from '../inputs/index.ts';
 
-export function getConfigFileContents(configFilePath: string | undefined) : Partial<Config> {
-  let config = {}
+export function getConfigFileContents(configFilePath: string | undefined) : Config {
+  let config : Config = {
+    onlyPublicRepositories: onlyPublicRepositories(),
+    templateFiles: templateFiles(),
+    labelSearchPattern: labelSearchPattern(),
+    repositoryBlacklist: repositoryBlacklist(),
+    categories: categories()
+  }
   
   if (!configFilePath) {
     return config;

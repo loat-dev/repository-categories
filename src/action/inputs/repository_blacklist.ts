@@ -1,4 +1,4 @@
-import { getStringElseUndefined } from '../get_string_else_undefined.ts';
+import { getString } from '../get_string.ts';
 import * as yaml from '@std/yaml';
 
 /**
@@ -7,7 +7,7 @@ import * as yaml from '@std/yaml';
  * @returns The value of the `repository-blacklist` input.
  */
 export function repositoryBlacklist() : string[] {
-  const value = getStringElseUndefined('repository-blacklist');
+  const value = getString('repository-blacklist');
 
   if (value === undefined) {
     return []

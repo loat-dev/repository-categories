@@ -1,4 +1,4 @@
-import { getStringElseUndefined } from '../get_string_else_undefined.ts';
+import { getString } from '../get_string.ts';
 
 /**
  * Get the value of the `organization-name` input from the action.
@@ -6,5 +6,5 @@ import { getStringElseUndefined } from '../get_string_else_undefined.ts';
  * @returns The value of the `organization-name` input.
  */
 export function organizationName() : string | undefined {
-  return getStringElseUndefined('organization-name');
+  return getString('organization-name');
 }

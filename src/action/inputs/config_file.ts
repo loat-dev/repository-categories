@@ -1,4 +1,4 @@
-import { getStringElseUndefined } from '../get_string_else_undefined.ts';
+import { getString } from '../get_string.ts';
 
 /**
  * Get the value of the `config-file` input from the action.
@@ -6,5 +6,5 @@ import { getStringElseUndefined } from '../get_string_else_undefined.ts';
  * @returns The value of the `config-file` input.
  */
 export function configFile() : string | undefined {
-  return getStringElseUndefined('config-file');
+  return getString('config-file');
 }
