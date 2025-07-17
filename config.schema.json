@@ -5,7 +5,6 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "templateFiles",
     "categories"
   ],
   "properties": {
@@ -28,19 +27,19 @@
       "properties": {
         "readme": {
           "title": "README",
-          "description": "Template file for the readme.",
+          "description": "Template file for the readme.\nDefault: './.github/categories/templates/readme.md'.",
           "type": "string",
           "default": "./.github/categories/templates/readme.md"
         },
         "category": {
           "title": "Category",
-          "description": "Template file for the category.",
+          "description": "Template file for the category.\nDefault: './.github/categories/templates/category.md'.",
           "type": "string",
           "default": "./.github/categories/templates/category.md"
         },
         "repository": {
           "title": "Repository",
-          "description": "Template file for the repository.",
+          "description": "Template file for the repository.\nDefault: './.github/categories/templates/repository.md'.",
           "type": "string",
           "default": "./.github/categories/templates/repository.md"
         }
