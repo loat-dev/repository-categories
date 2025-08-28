@@ -5,6 +5,8 @@ import { getString } from '../get_string.ts';
  * 
  * @returns The value of the `label-search-pattern` input.
  */
-export function labelSearchPattern() : string {
-  return getString('label-search-pattern');
+export function labelSearchPattern() : RegExp {
+  const inputPattern = getString('label-search-pattern');
+  
+  return new RegExp(inputPattern, 'g');
 }

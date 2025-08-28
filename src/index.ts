@@ -35,11 +35,11 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
     }
     
     octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((labels) => {
-      const categoryLabel = labels.data.filter((label) => label.name.match(new RegExp(config.labelSearchPattern)))[0];
+      const categoryLabel = labels.data.filter((label) => config.labelSearchPattern.test(label.name))[0];
       
       if (!categoryLabel) {
         actionsCore.warning(
-          `Ignoring repository "${repository.name}", because it has no category label that matches "${config.labelSearchPattern}".`,
+          `Ignoring repository "${repository.name}", because it has no category label that matches "${config.labelSearchPattern.source}".`,
           {title: 'No pattern match'}
         );
         actionsCore.endGroup();
@@ -56,7 +56,7 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
         actionsCore.endGroup();
         return;
       }
-      
+
       console.log(name, categories);
     })
 

@@ -4,7 +4,7 @@ import { TemplateFiles } from './template_files.ts';
 export interface Config {
   onlyPublicRepositories : boolean,
   templateFiles : TemplateFiles,
-  labelSearchPattern : string,
+  labelSearchPattern : RegExp,
   repositoryBlacklist : string[],
   categories: Categories
 }
