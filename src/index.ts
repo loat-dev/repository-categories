@@ -23,31 +23,40 @@ if (actionsCore.isDebug()) {
 const octokit = actionsGithub.getOctokit(config.token)
 octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) => {
   response.data.forEach((repository) => {
-    actionsCore.startGroup(`Repository ${repository.name}`);
+    actionsCore.startGroup(`Processing repository "${repository.name}"...`);
 
     if (config.onlyPublicRepositories && repository.private) {
       actionsCore.warning(
-        `Ignoring repository "${repository.name}", because it is private and "only-public-repositories" is set to true.`,
+        `Ignoring repository "${repository.name}", because it's private and "only-public-repositories" is set to true.`,
         {title: 'Private repository'}
       );
       actionsCore.endGroup();
       return;
     }
     
-
     octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((labels) => {
       const categoryLabel = labels.data.filter((label) => label.name.match(new RegExp(config.labelSearchPattern)))[0];
       
       if (!categoryLabel) {
-        actionsCore.info(
+        actionsCore.warning(
           `Ignoring repository "${repository.name}", because it has no category label that matches "${config.labelSearchPattern}".`,
-          
+          {title: 'No pattern match'}
         );
         actionsCore.endGroup();
         return;
       }
       const name = repository.name;
       const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
+
+      if (categories.length === 0) {
+        actionsCore.warning(
+          `Ignoring repository "${repository.name}", because it has no categories.`,
+          {title: 'No categories provided'}
+        );
+        actionsCore.endGroup();
+        return;
+      }
+      
       console.log(name, categories);
     })
 
