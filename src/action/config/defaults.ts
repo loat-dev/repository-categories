@@ -5,7 +5,7 @@ export const defaults = {
     category: './.github/categories/templates/category.md',
     repository: './.github/categories/templates/repository.md'
   },
-  labelSearchPattern: '/category/g',
+  labelSearchPattern: 'category',
   repositoryBlacklist: ['.github'],
   categories: {
     '': 'No Category'

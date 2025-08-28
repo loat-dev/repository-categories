@@ -7,6 +7,6 @@ import { getString } from '../get_string.ts';
  */
 export function labelSearchPattern() : RegExp {
   const inputPattern = getString('label-search-pattern');
-  
+
   return new RegExp(inputPattern, 'g');
 }

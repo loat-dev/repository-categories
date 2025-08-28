@@ -1,15 +1,18 @@
 import actionsCore from '@actions/core';
 import type { Config } from './index.ts';
-import { categories, labelSearchPattern, onlyPublicRepositories, repositoryBlacklist, templateFiles } from '../inputs/index.ts';
+import * as inputs from '../inputs/index.ts';
 
 export function getConfigFileContents(configFilePath: string) : Config {
   let config : Config = {
-    onlyPublicRepositories: onlyPublicRepositories(),
-    templateFiles: templateFiles(),
-    labelSearchPattern: labelSearchPattern(),
-    repositoryBlacklist: repositoryBlacklist(),
-    categories: categories()
+    onlyPublicRepositories: inputs.onlyPublicRepositories(),
+    templateFiles: inputs.templateFiles(),
+    labelSearchPattern: inputs.labelSearchPattern(),
+    repositoryBlacklist: inputs.repositoryBlacklist(),
+    categories: inputs.categories(),
   }
+
+  console.log(typeof config.labelSearchPattern);
+  
   
   if (!configFilePath) {
     return config;
