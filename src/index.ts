@@ -35,7 +35,7 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
     }
     
     octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((labels) => {
-      const categoryLabel = labels.data.filter((label) => {console.log(config.labelSearchPattern); return config.labelSearchPattern.test(label.name)})[0];
+      const categoryLabel = labels.data.filter((label) => {console.log(typeof config.labelSearchPattern); return config.labelSearchPattern.test(label.name)})[0];
       
       if (!categoryLabel) {
         actionsCore.warning(
