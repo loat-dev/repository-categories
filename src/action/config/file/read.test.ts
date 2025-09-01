@@ -1,7 +1,7 @@
 import { assertObjectMatch, assertThrows } from "@std/assert";
 import { RawContents } from './raw_contents.ts';
 import { read } from './read.ts';
-import { ConfigFileParsingError } from './error/config_file_parsing_error.ts';
+import * as errors from './errors/index.ts';
 
 const testData : Record<string, RawContents> = {
   'path/to/file.json': {
@@ -44,7 +44,7 @@ Deno.test('Tests the read function.', async (test) => {
           'path/to/file.json',
           (path) => JSON.stringify(testData[path.toString()]) + '"'
         ),
-        ConfigFileParsingError
+        errors.ConfigFileParsingError
       )
     }
   })

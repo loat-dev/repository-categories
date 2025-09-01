@@ -4,7 +4,7 @@ import CustomError from '../../../../error/custom_error.ts';
  * This error is thrown when the configuration file cannot be found.
  */
 export class ConfigFileNotFoundError extends CustomError {
-  public path : string;
+  public readonly path : string;
 
   /**
    * @param path Path to the config file

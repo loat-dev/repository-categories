@@ -1,4 +1,4 @@
-import { Categories } from './categories.ts';
+import { Categories } from '../categories.ts';
 import { type TemplateFiles } from './template_files.ts';
 
 /**

@@ -1,6 +1,5 @@
 import { type RawContents } from './raw_contents.ts';
-import { ConfigFileNotFoundError } from './error/config_file_not_found_error.ts';
-import { ConfigFileParsingError } from './error/config_file_parsing_error.ts';
+import * as errors from './errors/index.ts'
 
 /**
  * This function reads the config from the provided path.
@@ -18,11 +17,11 @@ export function read(
     return JSON.parse(reader(path));
   } catch (error) {
     if (error instanceof Deno.errors.NotFound) {
-      throw new ConfigFileNotFoundError(path, error);
+      throw new errors.ConfigFileNotFoundError(path, error);
     }
 
     if (error instanceof SyntaxError) {
-      throw new ConfigFileParsingError(path, error);
+      throw new errors.ConfigFileParsingError(path, error);
     }
 
     throw error;
