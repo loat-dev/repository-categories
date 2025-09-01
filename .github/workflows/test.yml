@@ -1,0 +1,31 @@
+name: 'Test Action'
+
+on:
+  push:
+    branches:
+      - 'main'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: 'Unit Test'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Setup Repository (${{github.event.repository.name}})'
+        uses: actions/checkout@v4
+      
+      - name: 'Setup Deno'
+        id: test
+        uses: 'denoland/setup-deno@v2'
+        with:
+          deno-version: v2.x
+
+      - name: 'Run Unit Test'
+        run: |
+          deno task test
+
