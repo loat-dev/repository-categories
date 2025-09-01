@@ -19,4 +19,11 @@ Deno.test('Tests the getBoolean function.', async (test) => {
       }
     }) 
   }
+
+  await test.step({
+    name: 'Tests if the function returns undefined on empty input.',
+    fn: () => {
+      assertEquals(getBoolean('foo', () => ''), undefined);
+    }
+  })
 })

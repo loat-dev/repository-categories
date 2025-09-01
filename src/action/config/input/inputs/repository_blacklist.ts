@@ -5,11 +5,15 @@ import { getString } from '../get_string.ts';
 /**
  * Get the value of the `repository-blacklist` input from the action.
  * 
- * @returns The value of the `repository-blacklist` input.
+ * @returns The value of the `repository-blacklist` input or undefined if the value was not set.
  */
-export function repositoryBlacklist() : string[] {
+export function repositoryBlacklist() : string[] | undefined {
   const key = 'repository-blacklist'
   const value = getString(key);
+
+  if (value === undefined) {
+    return undefined;
+  }
 
   try {
     return yaml.parse(value) as string[]

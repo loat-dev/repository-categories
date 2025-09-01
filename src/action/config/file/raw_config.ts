@@ -6,7 +6,7 @@ import { type TemplateFiles } from './template_files.ts';
  */
 export interface RawConfig {
   /** If only public repositories should be queried. Private repositories will be ignored. */
-  onlyPublicRepositories? : string,
+  onlyPublicRepositories? : boolean,
 
   /** Template files to use for the categories. */
   templateFiles? : TemplateFiles

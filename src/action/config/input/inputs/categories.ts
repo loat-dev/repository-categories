@@ -7,11 +7,15 @@ import { getString } from '../get_string.ts';
 /**
  * Get the value of the `categories` input from the action.
  * 
- * @returns The value of the `categories` input.
+ * @returns The value of the `categories` input or undefined if the value was not set.
  */
-export function categories() : Categories {
+export function categories() : Categories | undefined {
   const key = 'categories';
   const value = getString(key);
+
+  if (value === undefined) {
+    return undefined;
+  }
 
   try {
     return yaml.parse(value) as Categories

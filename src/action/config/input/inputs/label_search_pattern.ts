@@ -4,11 +4,15 @@ import { getString } from '../get_string.ts';
 /**
  * Get the value of the `label-search-pattern` input from the action.
  * 
- * @returns The value of the `label-search-pattern` input.
+ * @returns The value of the `label-search-pattern` input or undefined if the value was not set.
  */
-export function labelSearchPattern() : RegExp {
+export function labelSearchPattern() : RegExp | undefined {
   const key = 'label-search-pattern'
   const inputPattern = getString(key);
+
+  if (inputPattern === undefined) {
+    return undefined;
+  }
 
   try {
     return new RegExp(inputPattern, 'g');

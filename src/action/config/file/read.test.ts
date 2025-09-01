@@ -9,7 +9,7 @@ const testData : Record<string, RawConfig> = {
       '': 'Default'
     },
     labelSearchPattern: 'dummySearchPattern',
-    onlyPublicRepositories: 'true',
+    onlyPublicRepositories: true,
     repositoryBlacklist: [
       'foo',
       'bar'
