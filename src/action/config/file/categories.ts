@@ -1,15 +1,9 @@
-import { Categories } from '../categories.ts';
-import { Config } from '../config.ts';
-import { defaults } from '../defaults.ts';
 
-/**
- * Get the value of the `categories` input from the file.
- * 
- * @returns The value of the `categories` input.
- */
-export function categories(config : Config) : Categories {
-  return {
-    ...defaults.categories,
-    ...config.categories
-  }
+/** This interface represents the mappings between the category IDs and the category names. */
+export interface Categories {
+  /** Default category to use if no category is found. */
+  ''? : string,
+  
+  /** Mapping from the category ID to the category name. */
+  [id : string] : string | undefined
 }
