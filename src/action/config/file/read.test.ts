@@ -1,15 +1,15 @@
 import { assertObjectMatch, assertThrows } from "@std/assert";
-import { RawContents } from './raw_contents.ts';
+import { RawConfig } from './raw_config.ts';
 import { read } from './read.ts';
 import * as errors from './errors/index.ts';
 
-const testData : Record<string, RawContents> = {
+const testData : Record<string, RawConfig> = {
   'path/to/file.json': {
     categories: {
       '': 'Default'
     },
     labelSearchPattern: 'dummySearchPattern',
-    onlyPublicRepositories: true,
+    onlyPublicRepositories: 'true',
     repositoryBlacklist: [
       'foo',
       'bar'

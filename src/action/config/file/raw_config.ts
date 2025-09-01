@@ -4,9 +4,9 @@ import { type TemplateFiles } from './template_files.ts';
 /**
  * This interface represents the raw file content of the YAML file config.
  */
-export interface RawContents {
+export interface RawConfig {
   /** If only public repositories should be queried. Private repositories will be ignored. */
-  onlyPublicRepositories? : boolean,
+  onlyPublicRepositories? : string,
 
   /** Template files to use for the categories. */
   templateFiles? : TemplateFiles

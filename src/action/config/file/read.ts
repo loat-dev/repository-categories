@@ -1,4 +1,4 @@
-import { type RawContents } from './raw_contents.ts';
+import { type RawConfig } from './raw_config.ts';
 import * as errors from './errors/index.ts'
 
 /**
@@ -12,7 +12,7 @@ import * as errors from './errors/index.ts'
 export function read(
   path : string,
   reader = Deno.readTextFileSync
-) : RawContents {
+) : RawConfig {
   try {
     return JSON.parse(reader(path));
   } catch (error) {
