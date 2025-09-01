@@ -5,9 +5,9 @@ import * as action from './action/index.ts';
 
 
 const config = {
-  ...action.config.getConfigFileContents(action.inputs.configFile()),
-  organizationName: action.inputs.organizationName(),
-  token: action.inputs.token()
+  ...action.config.defaults,
+  organizationName: action.config.input.inputs.organizationName(),
+  token: action.config.input.inputs.token()
 }
 
 if (actionsCore.isDebug()) {
