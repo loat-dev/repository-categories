@@ -1,7 +1,7 @@
-import { Categories } from '../../categories.ts';
-import { getString } from '../get_string.ts';
 import * as yaml from '@std/yaml';
 import * as errors from '../errors/index.ts';
+import { Categories } from '../../categories.ts';
+import { getString } from '../get_string.ts';
 
 
 /**

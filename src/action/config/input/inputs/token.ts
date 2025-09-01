@@ -1,4 +1,4 @@
-import actionsCore from '@actions/core';
+import { getString } from '../get_string.ts';
 
 /**
  * Get the value of the `token` input from the action.
@@ -6,8 +6,5 @@ import actionsCore from '@actions/core';
  * @returns The value of the `token` input.
  */
 export function token() : string {
-  return actionsCore.getInput(
-    'token',
-    {required: true}
-  );
+  return getString('token');
 }
