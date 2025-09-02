@@ -28,14 +28,14 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
   for (const repository of response.data) {
     actionsCore.startGroup(`Processing repository "${repository.name}"...`);
 
-    // if (config.onlyPublicRepositories && repository.private) {
-    //   actionsCore.warning(
-    //     `Ignoring repository "${repository.name}", because it's private and "only-public-repositories" is set to true.`,
-    //     {title: 'Private repository'}
-    //   );
-    //   actionsCore.endGroup();
-    //   return;
-    // }
+    if (config.onlyPublicRepositories && repository.private) {
+      actionsCore.warning(
+        `Ignoring repository "${repository.name}", because it's private and "only-public-repositories" is set to true.`,
+        {title: 'Private repository'}
+      );
+      actionsCore.endGroup();
+      return;
+    }
 
     // if (config.repositoryBlacklist.includes(repository.name)) {
     //   actionsCore.warning(
