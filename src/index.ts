@@ -51,7 +51,6 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
           `Ignoring repository "${repository.name}", because it has no category label that matches "${config.labelSearchPattern.source}".`,
           {title: 'No pattern match'}
         );
-        actionsCore.endGroup();
         return;
       }
       const name = repository.name;
@@ -62,7 +61,6 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
           `Ignoring repository "${repository.name}", because it has no categories.`,
           {title: 'No categories provided'}
         );
-        actionsCore.endGroup();
         return;
       }
 
