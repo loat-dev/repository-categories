@@ -5,7 +5,7 @@ import * as action from '../action/index.ts';
 
 export function config(config: action.config.Config) : void {
   actionsCore.startGroup(colors.green('Config:'))
-  actionsCore.info(`organization-name: ${config.organizationName}`)
+  actionsCore.info(colors.red('organization-name') + colors.gray(': ') + colors.green(config.organizationName))
   actionsCore.info(`only-public-repositories: ${config.onlyPublicRepositories}`)
   actionsCore.info(`template-files: ${JSON.stringify(config.templateFiles)}`)
   actionsCore.info(`label-search-pattern: ${config.labelSearchPattern.source}`)
