@@ -9,21 +9,18 @@ if (token === undefined) {
   throw new Error('No token')
 }
 
-const config = {
-  ...action.config.getConfig()
-};
+const config = action.config.getConfig();
 
-if (actionsCore.isDebug()) {
-  actionsCore.debug('Inputs:');
-  actionsCore.debug(`organization-name: ${config.organizationName}`)
-  actionsCore.debug(`only-public-repositories: ${config.onlyPublicRepositories}`)
-  actionsCore.debug(`template-files: ${JSON.stringify(config.templateFiles)}`)
-  actionsCore.debug(`label-search-pattern: ${config.labelSearchPattern}`)
-  actionsCore.debug(`repository-blacklist: ${JSON.stringify(config.repositoryBlacklist)}`)
-  actionsCore.debug(`categories: ${JSON.stringify(config.categories)}`)
-}
+actionsCore.debug('Inputs:');
+actionsCore.debug(`organization-name: ${config.organizationName}`)
+actionsCore.debug(`only-public-repositories: ${config.onlyPublicRepositories}`)
+actionsCore.debug(`template-files: ${JSON.stringify(config.templateFiles)}`)
+actionsCore.debug(`label-search-pattern: ${config.labelSearchPattern}`)
+actionsCore.debug(`repository-blacklist: ${JSON.stringify(config.repositoryBlacklist)}`)
+actionsCore.debug(`categories: ${JSON.stringify(config.categories)}`)
 
-const octokit = actionsGithub.getOctokit(token)
+const octokit = actionsGithub.getOctokit(token);
+
 octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) => {
   response.data.forEach((repository) => {
     actionsCore.startGroup(`Processing repository "${repository.name}"...`);
@@ -32,6 +29,15 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
       actionsCore.warning(
         `Ignoring repository "${repository.name}", because it's private and "only-public-repositories" is set to true.`,
         {title: 'Private repository'}
+      );
+      actionsCore.endGroup();
+      return;
+    }
+
+    if (config.repositoryBlacklist.includes(repository.name)) {
+      actionsCore.warning(
+        `Ignoring repository "${repository.name}", because it's on the repository blacklist.`,
+        {title: 'Repository blacklist'}
       );
       actionsCore.endGroup();
       return;
