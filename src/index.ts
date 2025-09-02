@@ -23,7 +23,9 @@ const octokit = actionsGithub.getOctokit(token);
 
 octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (response) => {
   
-  for await (const repository of response.data) {
+  actionsCore.info(`Chekcing repositories: ${response.data.map((repository) => repository.name).join(', ')}`)
+  
+  for (const repository of response.data) {
     actionsCore.startGroup(`Processing repository "${repository.name}"...`);
 
     if (config.onlyPublicRepositories && repository.private) {
