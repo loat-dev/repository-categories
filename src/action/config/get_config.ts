@@ -14,6 +14,6 @@ export function getConfig() : Config {
   if (configFilePath !== undefined) {
     config = merge(file.getConfig(configFilePath), config);
   }
-  
+
   return config;
 }

@@ -3,12 +3,15 @@ import actionsGithub from '@actions/github';
 
 import * as action from './action/index.ts';
 
+const token = action.config.input.properties.token()
+
+if (token === undefined) {
+  throw new Error('No token')
+}
 
 const config = {
-  ...action.config.defaults,
-  organizationName: action.config.input.inputs.organizationName(),
-  token: action.config.input.inputs.token()
-}
+  ...action.config.getConfig()
+};
 
 if (actionsCore.isDebug()) {
   actionsCore.debug('Inputs:');
@@ -20,7 +23,7 @@ if (actionsCore.isDebug()) {
   actionsCore.debug(`categories: ${JSON.stringify(config.categories)}`)
 }
 
-const octokit = actionsGithub.getOctokit(config.token)
+const octokit = actionsGithub.getOctokit(token)
 octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) => {
   response.data.forEach((repository) => {
     actionsCore.startGroup(`Processing repository "${repository.name}"...`);
