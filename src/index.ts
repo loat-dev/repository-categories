@@ -45,8 +45,6 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
       actionsCore.endGroup();
       continue;
     }
-
-    actionsCore.info('Searching for labels in the repository...');
     
     await octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((response) => {
       const categoryLabel = response.data.filter((label) => config.labelSearchPattern.test(label.name))[0];
@@ -61,19 +59,19 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
 
       actionsCore.info(`Found label: ${JSON.stringify(categoryLabel)}`)
 
-      // const name = repository.name;
-      // const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
+      const name = repository.name;
+      const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
 
-      // if (categories.length === 0) {
-      //   actionsCore.warning(
-      //     `Ignoring repository "${repository.name}", because it has no categories.`,
-      //     {title: 'No categories provided'}
-      //   );
-      //   return;
-      // }
+      if (categories.length === 0) {
+        actionsCore.warning(
+          `Ignoring repository "${repository.name}", because it has no categories.`,
+          {title: 'No categories provided'}
+        );
+        return;
+      }
 
-      // actionsCore.info(name)
-      // actionsCore.info(categories.join(', '))
+      actionsCore.info(name)
+      actionsCore.info(categories.join(', '))
     })
 
     actionsCore.endGroup();
