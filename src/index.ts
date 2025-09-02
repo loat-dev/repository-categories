@@ -66,7 +66,8 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
         return;
       }
 
-      console.log(name, categories);
+      actionsCore.info(name)
+      actionsCore.info(categories.join(', '))
     })
 
     actionsCore.endGroup();
