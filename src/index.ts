@@ -11,13 +11,13 @@ if (token === undefined) {
 
 const config = action.config.getConfig();
 
-actionsCore.debug('Inputs:');
-actionsCore.debug(`organization-name: ${config.organizationName}`)
-actionsCore.debug(`only-public-repositories: ${config.onlyPublicRepositories}`)
-actionsCore.debug(`template-files: ${JSON.stringify(config.templateFiles)}`)
-actionsCore.debug(`label-search-pattern: ${config.labelSearchPattern}`)
-actionsCore.debug(`repository-blacklist: ${JSON.stringify(config.repositoryBlacklist)}`)
-actionsCore.debug(`categories: ${JSON.stringify(config.categories)}`)
+actionsCore.info('Inputs:');
+actionsCore.info(`organization-name: ${config.organizationName}`)
+actionsCore.info(`only-public-repositories: ${config.onlyPublicRepositories}`)
+actionsCore.info(`template-files: ${JSON.stringify(config.templateFiles)}`)
+actionsCore.info(`label-search-pattern: ${config.labelSearchPattern}`)
+actionsCore.info(`repository-blacklist: ${JSON.stringify(config.repositoryBlacklist)}`)
+actionsCore.info(`categories: ${JSON.stringify(config.categories)}`)
 
 const octokit = actionsGithub.getOctokit(token);
 
