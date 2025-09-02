@@ -3,6 +3,7 @@ export * as input from './input/index.ts'
 
 export { defaults } from './defaults.ts';
 export { merge } from './merge.ts'
+export { getConfig } from './get_config.ts'
 
 export { type Config } from './config.ts';
 export { type TemplateFiles } from './template_files.ts';

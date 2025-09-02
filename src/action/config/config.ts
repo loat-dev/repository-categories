@@ -5,22 +5,22 @@ import { TemplateFiles } from './template_files.ts';
  * This interface represents the config for the action.
  */
 export interface Config {
-  organizationName? : string,
+  organizationName : string,
   
   /** If only public repositories should be queried. Private repositories will be ignored. */
-  onlyPublicRepositories? : boolean,
+  onlyPublicRepositories : boolean,
   
   /** Template files to use for the categories. */
-  templateFiles? : TemplateFiles,
+  templateFiles : TemplateFiles,
   /**
    * The category regex search pattern to use when searching for category labels in the repositories. Specify the
    * categories as comma separated values in the label description.
    */
-  labelSearchPattern? : RegExp,
+  labelSearchPattern : RegExp,
 
   /** List of repository names to blacklist. */
-  repositoryBlacklist? : string[],
+  repositoryBlacklist : string[],
 
   /** Mappings between the category IDs and the category names. */
-  categories? : Categories
+  categories : Categories
 }
