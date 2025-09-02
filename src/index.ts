@@ -21,8 +21,9 @@ actionsCore.info(`categories: ${JSON.stringify(config.categories)}`)
 
 const octokit = actionsGithub.getOctokit(token);
 
-octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) => {
-  response.data.forEach(async (repository) => {
+octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (response) => {
+  
+  for await (const repository of response.data) {
     actionsCore.startGroup(`Processing repository "${repository.name}"...`);
 
     if (config.onlyPublicRepositories && repository.private) {
@@ -73,5 +74,5 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
     })
 
     actionsCore.endGroup();
-  })
+  }
 })
