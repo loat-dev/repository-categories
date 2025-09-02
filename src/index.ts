@@ -15,7 +15,7 @@ actionsCore.info('Inputs:');
 actionsCore.info(`organization-name: ${config.organizationName}`)
 actionsCore.info(`only-public-repositories: ${config.onlyPublicRepositories}`)
 actionsCore.info(`template-files: ${JSON.stringify(config.templateFiles)}`)
-actionsCore.info(`label-search-pattern: ${config.labelSearchPattern}`)
+actionsCore.info(`label-search-pattern: ${config.labelSearchPattern.source}`)
 actionsCore.info(`repository-blacklist: ${JSON.stringify(config.repositoryBlacklist)}`)
 actionsCore.info(`categories: ${JSON.stringify(config.categories)}`)
 
@@ -42,9 +42,13 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
       actionsCore.endGroup();
       return;
     }
+
+    actionsCore.info('Searching for labels in the repository...');
     
-    octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((labels) => {
-      const categoryLabel = labels.data.filter((label) => config.labelSearchPattern.test(label.name))[0];
+    octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((response) => {
+      const categoryLabel = response.data.filter((label) => config.labelSearchPattern.test(label.name))[0];
+
+      actionsCore.info(`Found label: ${JSON.stringify(categoryLabel)}`)
       
       if (!categoryLabel) {
         actionsCore.warning(
@@ -53,19 +57,19 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
         );
         return;
       }
-      const name = repository.name;
-      const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
+      // const name = repository.name;
+      // const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
 
-      if (categories.length === 0) {
-        actionsCore.warning(
-          `Ignoring repository "${repository.name}", because it has no categories.`,
-          {title: 'No categories provided'}
-        );
-        return;
-      }
+      // if (categories.length === 0) {
+      //   actionsCore.warning(
+      //     `Ignoring repository "${repository.name}", because it has no categories.`,
+      //     {title: 'No categories provided'}
+      //   );
+      //   return;
+      // }
 
-      actionsCore.info(name)
-      actionsCore.info(categories.join(', '))
+      // actionsCore.info(name)
+      // actionsCore.info(categories.join(', '))
     })
 
     actionsCore.endGroup();
