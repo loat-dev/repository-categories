@@ -4,13 +4,15 @@
   "description": "Configuration for the repository categories GitHub action config.json file.",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "categories"
-  ],
   "properties": {
     "$schema": {
       "title": "Schema",
       "description": "Path to the schema against which this document should be validated.",
+      "type": "string"
+    },
+    "organizationName": {
+      "title": "Name of the organization",
+      "description": "What organization to use.",
       "type": "string"
     },
     "onlyPublicRepositories": {
