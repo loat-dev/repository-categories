@@ -1,5 +1,5 @@
 import { Categories } from '../categories.ts';
-import { type TemplateFiles } from './template_files.ts';
+import { type TemplateFiles } from '../template_files.ts';
 
 /**
  * This interface represents the raw file content of the JSON file config.
