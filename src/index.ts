@@ -57,11 +57,8 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
         return;
       }
 
-      actionsCore.info(`Found label: ${JSON.stringify(categoryLabel)}`)
-
-      const name = repository.name;
       const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
-
+      
       if (categories.length === 0) {
         actionsCore.warning(
           `Ignoring repository "${repository.name}", because it has no categories.`,
@@ -69,9 +66,8 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
         );
         return;
       }
-
-      actionsCore.info(name)
-      actionsCore.info(categories.join(', '))
+      
+      actionsCore.info(`Found label "${categoryLabel.name}" with categories: ${categories.join(', ')}`)
     })
 
     actionsCore.endGroup();
