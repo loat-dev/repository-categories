@@ -48,8 +48,6 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
     
     await octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((response) => {
       const categoryLabel = response.data.filter((label) => config.labelSearchPattern.test(label.name))[0];
-
-      actionsCore.info(`Found label: ${JSON.stringify(categoryLabel)}`)
       
       if (!categoryLabel) {
         actionsCore.warning(
@@ -58,6 +56,9 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
         );
         return;
       }
+
+      actionsCore.info(`Found label: ${JSON.stringify(categoryLabel)}`)
+
       // const name = repository.name;
       // const categories = categoryLabel.description?.split(',').map((category) => category.trim()) ?? [];
 
