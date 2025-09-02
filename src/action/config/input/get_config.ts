@@ -1,18 +1,15 @@
 import { type Config } from '../config.ts';
-import { defaults } from '../defaults.ts';
-import { merge } from '../merge.ts';
 
-import * as inputs from './inputs/index.ts'
+import * as properties from './properties/index.ts'
 
-export function getConfig() : Config {
+export function getConfig() : Partial<Config> {
 
-  const partialConfig : Partial<Config> = {
-    onlyPublicRepositories: inputs.onlyPublicRepositories(),
-    templateFiles: inputs.templateFiles(),
-    labelSearchPattern: inputs.labelSearchPattern(),
-    repositoryBlacklist: inputs.repositoryBlacklist(),
-    categories: inputs.categories(),
+  return {
+    onlyPublicRepositories: properties.onlyPublicRepositories(),
+    templateFiles: properties.templateFiles(),
+    labelSearchPattern: properties.labelSearchPattern(),
+    repositoryBlacklist: properties.repositoryBlacklist(),
+    categories: properties.categories(),
+    organizationName: properties.organizationName()
   }
-  
-  return merge(partialConfig, defaults);
 }

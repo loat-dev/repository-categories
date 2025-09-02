@@ -1,4 +1,4 @@
-import CustomError from '../../../../error/custom_error.ts';
+import { CustomError } from '../../../../errors/index.ts';
 
 /**
  * This error is thrown if the configuration file could not be parsed.

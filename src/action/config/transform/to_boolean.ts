@@ -5,7 +5,7 @@ import actionsCore from '@actions/core'
  * 
  * @returns The boolean value of the input or undefined if the value was not set.
  */
-export function getBoolean(
+export function toBoolean(
   key : string,
   getInput : (name : string) => string = actionsCore.getInput
 ) : boolean | undefined {

@@ -8,7 +8,7 @@
  * @param options The custom error options
  * @returns The custom error
  */
-export default class CustomError extends Error {
+export class CustomError extends Error {
   constructor(
     message : string,
     options? : ErrorOptions

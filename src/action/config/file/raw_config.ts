@@ -2,7 +2,7 @@ import { Categories } from '../categories.ts';
 import { type TemplateFiles } from './template_files.ts';
 
 /**
- * This interface represents the raw file content of the YAML file config.
+ * This interface represents the raw file content of the JSON file config.
  */
 export interface RawConfig {
   /** If only public repositories should be queried. Private repositories will be ignored. */

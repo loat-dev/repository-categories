@@ -1,8 +1,8 @@
 import * as yaml from '@std/yaml';
-import * as errors from '../errors/index.ts';
+import * as actionsCore from '@actions/core';
+import * as errors from '../../../../errors/index.ts';
+import * as transform from '../../transform/index.ts';
 import { Categories } from '../../categories.ts';
-import { getString } from '../get_string.ts';
-
 
 /**
  * Get the value of the `categories` input from the action.
@@ -11,7 +11,7 @@ import { getString } from '../get_string.ts';
  */
 export function categories() : Categories | undefined {
   const key = 'categories';
-  const value = getString(key);
+  const value = transform.toString(actionsCore.getInput(key));
 
   if (value === undefined) {
     return undefined;
@@ -21,7 +21,7 @@ export function categories() : Categories | undefined {
     return yaml.parse(value) as Categories
   } catch (error) {
     if (error instanceof SyntaxError) {
-      throw new errors.InputParsingError(key, error);
+      throw new errors.PropertyParsingError(key, error);
     }
 
     throw error;

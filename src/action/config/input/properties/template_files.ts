@@ -1,7 +1,8 @@
 import * as yaml from '@std/yaml';
-import * as errors from '../errors/index.ts'
+import * as actionsCore from '@actions/core'
+import * as errors from '../../../../errors/index.ts'
+import * as transform from '../../transform/index.ts';
 import { TemplateFiles } from '../../template_files.ts';
-import { getString } from '../get_string.ts';
 
 /**
  * Get the value of the `template-files` input from the action.
@@ -10,7 +11,7 @@ import { getString } from '../get_string.ts';
  */
 export function templateFiles() : TemplateFiles | undefined {
   const key = 'template-files';
-  const value = getString(key);
+  const value = transform.toString(actionsCore.getInput(key));
 
   if (value === undefined) {
     return undefined;
@@ -20,7 +21,7 @@ export function templateFiles() : TemplateFiles | undefined {
     return yaml.parse(value) as TemplateFiles;
   } catch (error) {
     if (error instanceof SyntaxError) {
-      throw new errors.InputParsingError(key, error);
+      throw new errors.PropertyParsingError(key, error);
     }
 
     throw error;

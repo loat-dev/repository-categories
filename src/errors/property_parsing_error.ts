@@ -1,9 +1,9 @@
-import CustomError from '../../../../error/custom_error.ts';
+import { CustomError } from './custom_error.ts';
 
 /**
  * This error is thrown if the configuration file could not be parsed.
  */
-export class InputParsingError extends CustomError {
+export class PropertyParsingError extends CustomError {
   public readonly key : string;
 
   /**

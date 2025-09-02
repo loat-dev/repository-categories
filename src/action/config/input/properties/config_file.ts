@@ -1,4 +1,5 @@
-import { getString } from '../get_string.ts';
+import * as actionsCore from '@actions/core';
+import * as transform from '../../transform/index.ts';
 
 /**
  * Get the value of the `config-file` input from the action.
@@ -6,5 +7,5 @@ import { getString } from '../get_string.ts';
  * @returns The value of the `config-file` input or undefined if the value was not set.
  */
 export function configFile() : string | undefined {
-  return getString('config-file');
+  return transform.toString(actionsCore.getInput('config-file'));
 }

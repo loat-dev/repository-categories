@@ -1,4 +1,4 @@
-import CustomError from '../../../../error/custom_error.ts';
+import { CustomError } from '../../../../errors/custom_error.ts';
 
 /**
  * This error is thrown when the configuration file cannot be found.

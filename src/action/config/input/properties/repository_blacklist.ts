@@ -1,6 +1,7 @@
 import * as yaml from '@std/yaml';
-import * as errors from '../errors/index.ts'
-import { getString } from '../get_string.ts';
+import * as actionsCore from '@actions/core'
+import * as errors from '../../../../errors/index.ts'
+import * as transform from '../../transform/index.ts';
 
 /**
  * Get the value of the `repository-blacklist` input from the action.
@@ -9,7 +10,7 @@ import { getString } from '../get_string.ts';
  */
 export function repositoryBlacklist() : string[] | undefined {
   const key = 'repository-blacklist'
-  const value = getString(key);
+  const value = transform.toString(actionsCore.getInput(key));
 
   if (value === undefined) {
     return undefined;
@@ -19,7 +20,7 @@ export function repositoryBlacklist() : string[] | undefined {
     return yaml.parse(value) as string[]
   } catch (error) {
     if (error instanceof SyntaxError) {
-      throw new errors.InputParsingError(key, error);
+      throw new errors.PropertyParsingError(key, error);
     }
 
     throw error
