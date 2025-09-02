@@ -12,7 +12,7 @@ function keyValue(key : string, value : string | boolean) : string {
 }
 
 export function config(config: action.config.Config) : void {
-  actionsCore.startGroup(colors.green('Config:'))
+  actionsCore.startGroup(colors.gray('Config:'))
   actionsCore.info(keyValue('organization-name', config.organizationName))
   actionsCore.info(keyValue('only-public-repositories', config.onlyPublicRepositories))
   actionsCore.info(`template-files: ${JSON.stringify(config.templateFiles)}`)
