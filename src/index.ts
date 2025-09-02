@@ -22,7 +22,7 @@ actionsCore.info(`categories: ${JSON.stringify(config.categories)}`)
 const octokit = actionsGithub.getOctokit(token);
 
 octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) => {
-  response.data.forEach((repository) => {
+  response.data.forEach(async (repository) => {
     actionsCore.startGroup(`Processing repository "${repository.name}"...`);
 
     if (config.onlyPublicRepositories && repository.private) {
@@ -45,7 +45,7 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then((response) =>
 
     actionsCore.info('Searching for labels in the repository...');
     
-    octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((response) => {
+    await octokit.rest.issues.listLabelsForRepo({owner: config.organizationName, repo: repository.name}).then((response) => {
       const categoryLabel = response.data.filter((label) => config.labelSearchPattern.test(label.name))[0];
 
       actionsCore.info(`Found label: ${JSON.stringify(categoryLabel)}`)
