@@ -37,14 +37,14 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
       return;
     }
 
-    // if (config.repositoryBlacklist.includes(repository.name)) {
-    //   actionsCore.warning(
-    //     `Ignoring repository "${repository.name}", because it's on the repository blacklist.`,
-    //     {title: 'Repository blacklist'}
-    //   );
-    //   actionsCore.endGroup();
-    //   return;
-    // }
+    if (config.repositoryBlacklist.includes(repository.name)) {
+      actionsCore.warning(
+        `Ignoring repository "${repository.name}", because it's on the repository blacklist.`,
+        {title: 'Repository blacklist'}
+      );
+      actionsCore.endGroup();
+      return;
+    }
 
     // actionsCore.info('Searching for labels in the repository...');
     
