@@ -2,6 +2,7 @@ import actionsCore from '@actions/core';
 import actionsGithub from '@actions/github';
 
 import * as action from './action/index.ts';
+import * as print from './print/index.ts'
 
 const token = action.config.input.properties.token()
 
@@ -11,14 +12,7 @@ if (token === undefined) {
 
 const config = action.config.getConfig();
 
-actionsCore.startGroup('Inputs:')
-actionsCore.info(`organization-name: ${config.organizationName}`)
-actionsCore.info(`only-public-repositories: ${config.onlyPublicRepositories}`)
-actionsCore.info(`template-files: ${JSON.stringify(config.templateFiles)}`)
-actionsCore.info(`label-search-pattern: ${config.labelSearchPattern.source}`)
-actionsCore.info(`repository-blacklist: ${JSON.stringify(config.repositoryBlacklist)}`)
-actionsCore.info(`categories: ${JSON.stringify(config.categories)}`)
-actionsCore.endGroup()
+print.config(config);
 
 const octokit = actionsGithub.getOctokit(token);
 
