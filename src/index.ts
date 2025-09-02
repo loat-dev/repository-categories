@@ -34,7 +34,7 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
         {title: 'Private repository'}
       );
       actionsCore.endGroup();
-      return;
+      continue;
     }
 
     if (config.repositoryBlacklist.includes(repository.name)) {
@@ -43,7 +43,7 @@ octokit.rest.repos.listForOrg({org: config.organizationName}).then(async (respon
         {title: 'Repository blacklist'}
       );
       actionsCore.endGroup();
-      return;
+      continue;
     }
 
     // actionsCore.info('Searching for labels in the repository...');
